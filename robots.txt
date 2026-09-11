@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://parkwatanabe.com/sitemap.xml
+Sitemap: https://parkcalvin.com/sitemap.xml

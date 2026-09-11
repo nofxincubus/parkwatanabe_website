@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Park Watanabe LLC — Crafting Thoughtful Mobile & Web Apps</title>
+    <meta name="description" content="Park Watanabe LLC is an independent software studio building intuitive, delightful digital experiences including CloudAudio and WishWhale.">
+    <meta name="theme-color" content="#0a0c10">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Park Watanabe LLC — Crafting Thoughtful Digital Products">
+    <meta property="og:description" content="Creators of CloudAudio, WishWhale, and next-generation mobile experiences.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            950: '#080a0f',
+                            900: '#0d1117',
+                            850: '#131822',
+                            800: '#1a2234',
+                            700: '#2a354f'
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #090b10;
+            color: #e2e8f0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glow-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glow-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px -8px rgba(14, 165, 233, 0.15);
+        }
+
+        .glow-audio:hover {
+            border-color: rgba(168, 85, 247, 0.45);
+            box-shadow: 0 16px 32px -8px rgba(168, 85, 247, 0.18);
+        }
+
+        .glow-whale:hover {
+            border-color: rgba(45, 212, 191, 0.45);
+            box-shadow: 0 16px 32px -8px rgba(45, 212, 191, 0.18);
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-accent {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .animated-blob {
+            position: absolute;
+            filter: blur(90px);
+            border-radius: 9999px;
+            opacity: 0.35;
+            z-index: 0;
+            pointer-events: none;
+            animation: pulse-slow 8s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulse-slow {
+            0% { transform: scale(1) translate(0px, 0px); opacity: 0.25; }
+            50% { transform: scale(1.15) translate(20px, -20px); opacity: 0.4; }
+            100% { transform: scale(1) translate(-10px, 15px); opacity: 0.25; }
+        }
+    </style>
+</head>
+<body class="relative selection:bg-sky-500/30 selection:text-sky-200">
+
+    <!-- Ambient Glowing Background Elements -->
+    <div class="fixed inset-0 bg-grid-pattern pointer-events-none opacity-40 z-0"></div>
+    <div class="animated-blob w-96 h-96 bg-sky-500 top-10 left-1/4 -translate-x-1/2"></div>
+    <div class="animated-blob w-[30rem] h-[30rem] bg-purple-600/30 top-1/3 right-10"></div>
+    <div class="animated-blob w-80 h-80 bg-teal-500/25 bottom-20 left-10"></div>
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-dark-950/70 border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 p-[1px] shadow-lg shadow-sky-500/20 group-hover:shadow-sky-500/40 transition">
+                    <div class="w-full h-full bg-dark-900 rounded-[11px] flex items-center justify-center font-bold text-white tracking-tighter">
+                        PW
+                    </div>
+                </div>
+                <div>
+                    <span class="font-bold text-lg text-white tracking-tight group-hover:text-sky-300 transition">Park Watanabe</span>
+                    <span class="text-xs px-2 py-0.5 ml-1.5 rounded-full bg-white/10 text-slate-300 font-mono">LLC</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#apps" class="hover:text-white transition">Apps & Products</a>
+                <a href="#about" class="hover:text-white transition">About</a>
+                <a href="#principles" class="hover:text-white transition">Our Philosophy</a>
+                <a href="#contact" class="hover:text-white transition">Support</a>
+                <a href="#contact" class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/15 text-white font-semibold border border-white/10 transition flex items-center gap-2">
+                    <span>Get in Touch</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white p-2" aria-label="Toggle Navigation">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden px-6 pt-2 pb-6 bg-dark-900/95 border-b border-white/10 space-y-3 text-sm">
+            <a href="#apps" class="block py-2 text-slate-300 hover:text-white">Apps & Products</a>
+            <a href="#about" class="block py-2 text-slate-300 hover:text-white">About</a>
+            <a href="#principles" class="block py-2 text-slate-300 hover:text-white">Our Philosophy</a>
+            <a href="#contact" class="block py-2 text-slate-300 hover:text-white">Support & Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+
+        <!-- Hero Section -->
+        <section class="max-w-6xl mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-28 text-center">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-sky-300 mb-8 backdrop-blur-md shadow-inner">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                </span>
+                <span>Independent Software & App Studio</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
+                Crafting apps that bring <br class="hidden sm:inline">
+                <span class="text-gradient-accent">clarity, joy & harmony</span>.
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-base sm:text-xl text-slate-300 mb-10 leading-relaxed font-light">
+                Park Watanabe LLC designs and builds elegant, human-centric software for everyday focus, audio streaming, and personal aspirations.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#apps" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-semibold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:opacity-95 transition flex items-center justify-center gap-2">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Explore Our Apps</span>
+                </a>
+                <a href="#about" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 font-semibold transition flex items-center justify-center gap-2">
+                    <span>Learn About Us</span>
+                    <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400"></i>
+                </a>
+            </div>
+
+            <!-- Metric & Trust Strip -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 pt-10 border-t border-white/5 text-left max-w-4xl mx-auto">
+                <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                    <div class="text-2xl font-bold text-white font-mono">100%</div>
+                    <div class="text-xs text-slate-400 mt-1">Independent & Bootstrapped</div>
+                </div>
+                <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                    <div class="text-2xl font-bold text-sky-400 font-mono">Privacy-First</div>
+                    <div class="text-xs text-slate-400 mt-1">Zero intrusive tracking</div>
+                </div>
+                <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                    <div class="text-2xl font-bold text-purple-400 font-mono">Native Feel</div>
+                    <div class="text-xs text-slate-400 mt-1">Optimized performance</div>
+                </div>
+                <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                    <div class="text-2xl font-bold text-teal-400 font-mono">24/7</div>
+                    <div class="text-xs text-slate-400 mt-1">Dedicated support</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Apps Showcase -->
+        <section id="apps" class="max-w-6xl mx-auto px-6 py-20">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-sky-400 mb-3">Portfolio</h2>
+                <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Our Flagship Applications</p>
+                <p class="text-slate-400 text-sm mt-3">Engineered with obsessiveness for detail, speed, and clean typography.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- CloudAudio App Card -->
+                <div class="glow-card glow-audio rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between group">
+                    <div class="absolute top-0 right-0 w-48 h-48 bg-purple-500/10 rounded-full filter blur-3xl pointer-events-none"></div>
+
+                    <div>
+                        <!-- App Header -->
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 via-indigo-600 to-sky-500 p-0.5 shadow-xl shadow-purple-500/20">
+                                <div class="w-full h-full bg-dark-900 rounded-[14px] flex items-center justify-center text-purple-300">
+                                    <i data-lucide="headphones" class="w-8 h-8"></i>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-medium flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                                Audio & Cloud
+                            </span>
+                        </div>
+
+                        <!-- App Titles -->
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-purple-300 transition">CloudAudio</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            A minimalist, cloud-enabled audio player designed for uninterrupted listening, curated sounds, podcasts, and seamless media sync across devices.
+                        </p>
+
+                        <!-- Feature highlights -->
+                        <ul class="space-y-3 mb-8 text-xs text-slate-400">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-400 shrink-0"></i>
+                                <span>High-fidelity lossless streaming & offline cloud caching</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-400 shrink-0"></i>
+                                <span>Intelligent playlists & customizable audio equalizers</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-400 shrink-0"></i>
+                                <span>Minimal distraction-free interface with widget support</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-6 border-t border-white/5 flex items-center justify-between">
+                        <div class="text-xs text-slate-500 font-mono">iOS • macOS • Web</div>
+                        <a href="#contact" class="inline-flex items-center gap-1.5 text-sm font-semibold text-purple-400 hover:text-purple-300 transition">
+                            <span>Learn More & Support</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- WishWhale App Card -->
+                <div class="glow-card glow-whale rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between group">
+                    <div class="absolute top-0 right-0 w-48 h-48 bg-teal-500/10 rounded-full filter blur-3xl pointer-events-none"></div>
+
+                    <div>
+                        <!-- App Header -->
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-400 via-emerald-500 to-cyan-500 p-0.5 shadow-xl shadow-teal-500/20">
+                                <div class="w-full h-full bg-dark-900 rounded-[14px] flex items-center justify-center text-teal-300">
+                                    <i data-lucide="compass" class="w-8 h-8"></i>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-300 text-xs font-medium flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+                                Lifestyle & Goals
+                            </span>
+                        </div>
+
+                        <!-- App Titles -->
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-teal-300 transition">WishWhale</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            A calming wishlist, dream journal, and goal tracking companion. Turn ideas into achievable milestones surrounded by an ocean of inspiration.
+                        </p>
+
+                        <!-- Feature highlights -->
+                        <ul class="space-y-3 mb-8 text-xs text-slate-400">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400 shrink-0"></i>
+                                <span>Visual wish boards with instant item link scrapers</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400 shrink-0"></i>
+                                <span>Collaborative gifting & milestone celebration with friends</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400 shrink-0"></i>
+                                <span>Private, encrypted data storage with iCloud sync</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-6 border-t border-white/5 flex items-center justify-between">
+                        <div class="text-xs text-slate-500 font-mono">iOS • iPadOS • Android</div>
+                        <a href="#contact" class="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-400 hover:text-teal-300 transition">
+                            <span>Learn More & Support</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Company About & Philosophy -->
+        <section id="about" class="max-w-6xl mx-auto px-6 py-20 border-t border-white/5">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/5 text-xs text-sky-400 font-mono">
+                        About Park Watanabe LLC
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-snug">
+                        Small studio, <br>
+                        <span class="text-gradient">uncompromising attention to detail.</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Park Watanabe LLC was founded with a singular purpose: to build digital tools and lifestyle applications that feel natural, respectful of user attention, and genuinely helpful.
+                    </p>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Instead of bloated software cluttered with ads and algorithmic noise, we focus on smooth performance, native ergonomics, and peaceful user journeys.
+                    </p>
+                </div>
+
+                <div class="md:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4" id="principles">
+                    <div class="glow-card p-6 rounded-2xl">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-4">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-white font-semibold text-base mb-1">Privacy First</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Your data stays yours. We don't sell personal information or clutter our apps with invasive ad SDKs.</p>
+                    </div>
+
+                    <div class="glow-card p-6 rounded-2xl">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
+                            <i data-lucide="zap" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-white font-semibold text-base mb-1">Ultra Fast</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Lightweight architectures built for instant launches, fluid 120Hz scrolling, and low battery consumption.</p>
+                    </div>
+
+                    <div class="glow-card p-6 rounded-2xl">
+                        <div class="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 mb-4">
+                            <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-white font-semibold text-base mb-1">Human Centric</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Designed around real human habits and peaceful ergonomics, not addiction-driven growth loops.</p>
+                    </div>
+
+                    <div class="glow-card p-6 rounded-2xl">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4">
+                            <i data-lucide="sparkle" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-white font-semibold text-base mb-1">Continuous Polish</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Regular updates, active customer feedback loops, and relentless refinement over time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support & Contact Section -->
+        <section id="contact" class="max-w-4xl mx-auto px-6 py-20">
+            <div class="glow-card rounded-3xl p-8 sm:p-12 relative overflow-hidden text-center">
+                <div class="w-14 h-14 rounded-2xl bg-sky-500/10 border border-sky-500/30 text-sky-400 flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="mail" class="w-7 h-7"></i>
+                </div>
+
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-3">Need App Support or Have Inquiries?</h3>
+                <p class="text-slate-400 text-sm max-w-lg mx-auto mb-8">
+                    Whether you have feedback on CloudAudio, questions about WishWhale, or partnership proposals, we'd love to hear from you.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="mailto:contact@parkwatanabe.com" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-white text-dark-950 hover:bg-slate-200 font-semibold transition flex items-center justify-center gap-2">
+                        <i data-lucide="send" class="w-4 h-4 text-dark-950"></i>
+                        <span>Email Our Team</span>
+                    </a>
+                    <a href="mailto:support@parkwatanabe.com" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 font-medium transition flex items-center justify-center gap-2">
+                        <i data-lucide="help-circle" class="w-4 h-4 text-slate-400"></i>
+                        <span>App Support & Feedback</span>
+                    </a>
+                </div>
+
+                <div class="mt-8 text-xs text-slate-500">
+                    Typical response time within 24–48 hours on business days.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-dark-950/80 backdrop-blur-md relative z-10 py-12 text-sm text-slate-400">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center font-bold text-white text-xs">
+                    PW
+                </div>
+                <span class="text-slate-300 font-medium">Park Watanabe LLC</span>
+                <span class="text-slate-600">|</span>
+                <span class="text-xs text-slate-500">All rights reserved.</span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400">
+                <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white transition">Terms of Service</a>
+                <a href="#apps" class="hover:text-white transition">Apps</a>
+                <a href="#contact" class="hover:text-white transition">Support</a>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-6 mt-6 text-center md:text-left text-xs text-slate-600">
+            &copy; 2026 Park Watanabe LLC. CloudAudio and WishWhale are trademarks of Park Watanabe LLC.
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
